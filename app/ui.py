@@ -1,34 +1,19 @@
-import json, re, time
+import re, time
+from dotenv import load_dotenv
+load_dotenv()
+
 import streamlit as st
 from app.orchestrator import run_mri_pa_flow
 from app.metrics import ensure_metrics_server
 from app.llm import get_llm
-
-def extract_json_block(text: str):
-    m = re.findall(r"\{[\s\S]*\}$", text.strip())
-    if not m:
-        return None
-    try:
-        return json.loads(m[-1])
-    except Exception:
-        return None
-
-def pill(text, color="#0ea5e9"):
-    st.markdown(f"""
-    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:{color}22;color:{color};border:1px solid {color}55;font-size:0.85rem;margin-right:6px;">{text}</span>
-    """, unsafe_allow_html=True)
+from app.ui_helpers import extract_json_block, pill
+from app.ui_styles import inject_custom_css
 
 st.set_page_config(page_title="CareGraph • LlamaIndex Multi‑Agent RAG", page_icon="🩺", layout="wide")
 ensure_metrics_server()
 _llm = get_llm()
 
-st.markdown("""
-<style>
-.card { background: #0b132b0d; border: 1px solid #ffffff22; border-radius: 16px; padding: 16px 18px; margin-bottom: 12px; }
-.small { font-size: 0.88rem; opacity: 0.85; }
-.kv { display:flex; gap:8px; flex-wrap:wrap; }
-</style>
-""", unsafe_allow_html=True)
+inject_custom_css()
 
 st.title("CareGraph — Multi‑Agent Healthcare RAG (LlamaIndex)")
 st.caption("Synthetic demo • Not for clinical use")

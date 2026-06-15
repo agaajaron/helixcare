@@ -4,8 +4,15 @@ from typing import Optional
 
 def get_llm():
     """Return a LlamaIndex LLM instance.
-    If LLAMA_CPP_MODEL_PATH is set, use llama-cpp; otherwise fallback to OpenAI (requires OPENAI_API_KEY).
+    Picks a backend based on available env vars:
+    - ANTHROPIC_API_KEY -> Claude (Anthropic)
+    - LLAMA_CPP_MODEL_PATH -> local llama.cpp model
+    - otherwise -> OpenAI (requires OPENAI_API_KEY)
     """
+    if os.getenv("ANTHROPIC_API_KEY"):
+        from llama_index.llms.anthropic import Anthropic
+        return Anthropic(model="claude-sonnet-4-6")
+
     model_path = os.getenv("LLAMA_CPP_MODEL_PATH")
     if model_path and os.path.exists(model_path):
         from llama_index.llms.llama_cpp import LlamaCPP

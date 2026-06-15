@@ -1,14 +1,16 @@
 import os
-from llama_index.core import (
-    SimpleDirectoryReader,
-    VectorStoreIndex,
-    StorageContext,
-    load_index_from_storage,
-)
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import SentenceSplitter
 
 def build_policy_index(policies_dir: str = "data/policies", persist_dir: str = "storage/policies", force_rebuild: bool = False):
+    # Heavy imports deferred here so torch/sentence-transformers only load when the flow runs
+    from llama_index.core import (
+        SimpleDirectoryReader,
+        VectorStoreIndex,
+        StorageContext,
+        load_index_from_storage,
+    )
+    from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+    from llama_index.core.node_parser import SentenceSplitter
+
     embed = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     if not force_rebuild and os.path.exists(os.path.join(persist_dir, "docstore.json")):
