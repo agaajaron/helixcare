@@ -3,7 +3,9 @@ title: HelixCare — Agentic Healthcare Operations Platform
 message: If you use this software, please cite it as below.
 type: software
 authors:
-  - name: agaajaron
+  - given-names: Aga
+    family-names: Jaron
+    affiliation: SciComp Qlab LLC
 license: MIT
 version: 0.1.0
 date-released: 2026-06-15

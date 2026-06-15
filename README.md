@@ -90,3 +90,8 @@ python training/infer_with_adapter.py
 - This is a demo; do not use for clinical or coverage decisions.
 - See [docs/COMPLIANCE_MAP.md](docs/COMPLIANCE_MAP.md) for HIPAA-oriented design patterns and
   [docs/JIRA_EPICS.md](docs/JIRA_EPICS.md) for the production work breakdown.
+
+## License & Citation
+
+MIT License — Copyright (c) 2026 Aga Jaron / SciComp Qlab LLC. See [LICENSE](LICENSE) and
+[CITATION.cff](CITATION.cff).
