@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: HelixCare Orchestrator API
+  version: 0.2.0
+paths:
+  /v1/tasks:
+    post:
+      summary: Create and execute a healthcare operations task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [intent]
+              properties:
+                intent:
+                  type: string
+                  enum: [check_eligibility, prior_auth_check, provider_match, summarize_note, benefit_question]
+                member_id:
+                  type: string
+                modality:
+                  type: string
+                symptom:
+                  type: string
+                zip:
+                  type: string
+                artifacts:
+                  type: array
+                  items:
+                    type: string
+                constraints:
+                  type: object
+      responses:
+        "202":
+          description: Task accepted

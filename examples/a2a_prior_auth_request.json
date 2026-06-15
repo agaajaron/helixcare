@@ -1,0 +1,38 @@
+{
+  "msg_id": "msg_001",
+  "corr_id": "case_001",
+  "ts": "2026-06-09T12:00:00Z",
+  "from": "OrchestratorAgent",
+  "to": [
+    "PriorAuthAgent"
+  ],
+  "performative": "REQUEST",
+  "task": {
+    "name": "prior_auth_check",
+    "version": "1.0",
+    "inputs": {
+      "member_id": "M123",
+      "modality": "MRI",
+      "symptom": "low back pain",
+      "plan_id": "PPO-Blue-2025"
+    },
+    "constraints": {
+      "sla_ms": 2000,
+      "requires_citations": true
+    }
+  },
+  "context_refs": [
+    "mcp://fhir/Coverage?member=M123",
+    "rag://planRules?plan=PPO-Blue-2025"
+  ],
+  "phi_scope": [
+    "member_id"
+  ],
+  "authz_claims": {
+    "scopes": [
+      "coverage.read",
+      "plan_rules.read"
+    ]
+  },
+  "signature": "demo-signature"
+}

@@ -1,0 +1,41 @@
+{
+  "$id": "uri://helixcare/schemas/why-card/v1",
+  "type": "object",
+  "required": [
+    "decision",
+    "sources",
+    "criteria",
+    "confidence"
+  ],
+  "properties": {
+    "decision": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "member_friendly_summary": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array"
+    },
+    "criteria": {
+      "type": "array"
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

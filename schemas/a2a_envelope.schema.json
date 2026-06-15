@@ -1,0 +1,68 @@
+{
+  "$id": "uri://helixcare/schemas/a2a-envelope/v1",
+  "type": "object",
+  "required": [
+    "msg_id",
+    "corr_id",
+    "ts",
+    "from",
+    "to",
+    "performative",
+    "task"
+  ],
+  "properties": {
+    "msg_id": {
+      "type": "string"
+    },
+    "corr_id": {
+      "type": "string"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "from": {
+      "type": "string"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "performative": {
+      "type": "string",
+      "enum": [
+        "REQUEST",
+        "INFORM",
+        "PROPOSE",
+        "ACCEPT",
+        "REJECT",
+        "COMMIT",
+        "CANCEL",
+        "QUERY"
+      ]
+    },
+    "task": {
+      "type": "object"
+    },
+    "context_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authz_claims": {
+      "type": "object"
+    },
+    "phi_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "signature": {
+      "type": "string"
+    }
+  }
+}

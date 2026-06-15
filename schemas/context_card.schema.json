@@ -1,0 +1,26 @@
+{
+  "$id": "uri://helixcare/schemas/context-card/v1",
+  "type": "object",
+  "required": [
+    "id",
+    "entities",
+    "facts"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "object"
+    },
+    "facts": {
+      "type": "array"
+    },
+    "rationale_summary": {
+      "type": "string"
+    },
+    "ttl_seconds": {
+      "type": "integer"
+    }
+  }
+}

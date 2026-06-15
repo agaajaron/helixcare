@@ -1,0 +1,1 @@
+{"id": "pa_mri_low_back_001", "input": {"member_id": "M123", "modality": "MRI", "symptom": "low back pain", "plan": "PPO-Blue-2025", "clinical_note": "Completed 6 weeks PT. No neurologic deficit."}, "expected": {"must_cite": ["planRules#4.2"], "requires_why_card": true}}
