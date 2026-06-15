@@ -1,0 +1,1 @@
+{"instruction":"Does MRI need PA?","input":"Plan PPO-Blue-2025, CPT 72148, no PT.","output":"Yes. PA is required (clause 4.2). Conservative therapy not documented."}

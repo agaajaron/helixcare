@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: HelixCare — Agentic Healthcare Operations Platform
+message: If you use this software, please cite it as below.
+type: software
+authors:
+  - name: agaajaron
+license: MIT
+version: 0.1.0
+date-released: 2026-06-15

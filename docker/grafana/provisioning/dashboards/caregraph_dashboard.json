@@ -1,0 +1,80 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Requests per second",
+      "targets": [
+        {
+          "expr": "rate(caregraph_requests_total[1m])"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Latency (p95 approx)",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(caregraph_request_latency_seconds_bucket[5m])) by (le))"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Errors",
+      "targets": [
+        {
+          "expr": "sum(rate(caregraph_errors_total[1m]))"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Citations vs Missing",
+      "targets": [
+        {
+          "expr": "sum(rate(caregraph_citations_total[1m]))",
+          "legendFormat": "citations"
+        },
+        {
+          "expr": "sum(rate(caregraph_missing_citations_total[1m]))",
+          "legendFormat": "missing"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      }
+    }
+  ],
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "caregraph"
+  ],
+  "title": "CareGraph Overview",
+  "version": 1
+}

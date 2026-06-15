@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  app:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ../models:/models
+    environment:
+      - LLAMA_CPP_MODEL_PATH=/models/YOUR_MODEL.gguf
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: bash -lc "apt-get update && apt-get install -y build-essential cmake && pip install -r docker/requirements.txt && streamlit run app/ui.py --server.address 0.0.0.0 --server.port 8501"
+    ports:
+      - "8501:8501"
+      - "9000:9000"
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on: [app]
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning/datasources/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
+      - ./grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
+      - ./grafana/provisioning/dashboards/caregraph_dashboard.json:/etc/grafana/provisioning/dashboards/caregraph_dashboard.json:ro
+    depends_on: [prometheus]
